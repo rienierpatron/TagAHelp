@@ -52,6 +52,9 @@ class SiteController extends Controller
 				echo "error";exit;
 			}
 		}
+		if(isset($_SESSION['token'])){
+			$this->redirect(array('profile/index'));
+		}
 		$this->render('index');
 	}
 

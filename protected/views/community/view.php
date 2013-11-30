@@ -33,70 +33,56 @@
 	                <i class="icon-list-alt"></i>Location
 	            </div>
 	            <div class="widget-content padded">
-	            	<table class="table table-filters">
-		                <div id="map-canvas">
+	            	
+		                <div id="map-canvas" style="height:500px">
 		                </div>
-		            </table>
+		           
 	            </div>
 	        </div>
+	    </div>
+	    <div class="col-md-6">
 	    </div>
 	</div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<script>
+	var geocoder;
+	var address = "<?php echo $detail['result']['community_address1'].' '.$detail['result']['community_address2'].' '.$detail['result']['community_city'].' '.$_SESSION['country']; ?>";
+	var map;
+	geocoder = new google.maps.Geocoder();
+	var mapOptions = {
+		zoom: 17,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-    <script>
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see a blank space instead of the map, this
-// is probably because you have denied permission for location sharing.
+	geocoder.geocode( { 'address': address}, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
 
-var map;
+			map.setCenter(results[0].geometry.location);
 
-function initialize() {
-  var mapOptions = {
-    zoom: 15
-  };
-  map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
+			var marker = new google.maps.Marker({
+				map: map,
+				position: results[0].geometry.location,
+				icon: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Pink-icon.png',
 
-  // Try HTML5 geolocation
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = new google.maps.LatLng(position.coords.latitude,
-                                       position.coords.longitude);
+			});
+			
+			var infowindow = new google.maps.InfoWindow({
+				maxWidth: 250,
+			    content: '<p style="font-size:12px;"><b>Community: </b><?php echo $detail["result"]["community_name"]; ?><br/><b>Address : </b>'+address+'</p>'
+			});
+			marker.setAnimation(google.maps.Animation.DROP);
+			google.maps.event.addListener(marker, 'click', function() {
+			    infowindow.open(marker.get('map'), marker);
+			  });
+			$('.lat').html("<b>Latitude : </b>"+results[0].geometry.location.lat());
+			$('.long').html("<b>Longitude : </b>"+results[0].geometry.location.lng());
 
-      var infowindow = new google.maps.InfoWindow({
-        map: map,
-        position: pos,
-        content: 'You are here!'
-      });
-
-      map.setCenter(pos);
-    }, function() {
-      handleNoGeolocation(true);
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleNoGeolocation(false);
-  }
-}
-
-function handleNoGeolocation(errorFlag) {
-  if (errorFlag) {
-    var content = 'Error: The Geolocation service failed.';
-  } else {
-    var content = 'Error: Your browser doesn\'t support geolocation.';
-  }
-
-  var options = {
-    map: map,
-    position: new google.maps.LatLng(60, 105),
-    content: content
-  };
-
-  var infowindow = new google.maps.InfoWindow(options);
-  map.setCenter(options.position);
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
+	    } else {
+	      	$('.map-panel').hide();
+	      	$('.coordinates').hide();
+	      	$('.location-not-found').show();
+	    }
+	});
+</script>
