@@ -28,6 +28,7 @@ class Communities extends CActiveRecord{
 			foreach($countryList['result'] as $key => $value){
 				if($value['country_code'] == $country){
 					$_SESSION['country_id'] = $value['id'];
+					$_SESSION['country'] = $value['country_name'];
 				}
 			}
 			
@@ -46,6 +47,23 @@ class Communities extends CActiveRecord{
 			curl_close($chCommunities);
 			return $communityList['result'];
 			
+	}
+
+	public static function getDetails($id){
+		$getDetailUrl = "https://api.tagbond.com/community/details/".$id;
+		$params = array(
+				'access_token'=>$_SESSION['token']
+			);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $getDetailUrl);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+		$details = json_decode(curl_exec($ch),TRUE);
+		curl_close($ch);
+		return $details;
+		
 	}
 
 }

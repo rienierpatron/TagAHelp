@@ -17,7 +17,7 @@
 						                    	<div class="arrow-left"></div>
 						                    </td>
 						                    <td class="col-md-10"><?php echo $community[$counter]['community_name']; ?></td>
-						                    <td><a href="#businessInfo" data-id="<?php echo $community[$counter]['community_id']; ?>" id="business" class="btn btn-primary">View Info</a></td>
+						                    <td><a href="<?php echo $this->createUrl('community/details/'.$community[$counter]['community_id']); ?>" data-id="<?php echo $community[$counter]['community_id']; ?>" id="business" class="btn btn-primary">View Info</a></td>
 				                		</tr>
 				                	<?php }else{ ?>
 				                		<tr>
@@ -36,37 +36,5 @@
 	            </div>
 	        </div>
 	    </div>
-	    <div class="col-md-6" id="businessInfo" style="display:none">
-	    	<div class="widget-container fluid-height">
-				<div class="heading">
-	                <h3><i class="icon-info"></i>Community Details (Business)</h3>
-	            </div>
-	            <div class="widget-content padded">
-	            	
-	            </div>
-	        </div>
-	    </div>
 	</div>
 </div>
-<script>
-	$(document).ready(function(){
-		$('#business').click(function(e){
-			var id = $(this).attr('data-id');
-			$attr = $(this).attr('href');
-			$.ajax({
-			url:"https://api.tagbond.com/community/details/"+id,
-			type:"POST",
-			data:{'access_token':'<?php echo $_SESSION["token"]; ?>'},
-			success:function(data){
-				console.log(data);
-				$('#businessInfo').show();
-				e.preventDefault();
-				$("body, html").animate({ scrollTop: $($attr).offset().top }, 1000);
-				
-			},
-		})
-		
-		
-		});
-	});
-</script>

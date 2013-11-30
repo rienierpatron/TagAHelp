@@ -11,5 +11,9 @@ class CommunityController extends Controller
 			$this->redirect(array('site/index'));
 		}
 	}
+	public function actionDetails($id){
+		$details = Communities::getDetails($id);
+		$this->render('view',array('detail'=>$details));
+	}
 }
 ?>
