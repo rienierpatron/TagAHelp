@@ -13,10 +13,16 @@ class CommunityController extends Controller
 	}
 	public function actionDashboard($id){
 		$details = Communities::getDetails($id);
-		$this->render('dashboard',array('detail'=>$details));
+		if($details['result']['community_owner']['id'] == $_SESSION['id']){
+			$this->render('dashboard',array('detail'=>$details));
+		}else{
+			$this->redirect(array('community/dashboard/'.$id));
+		}
+		
 	}
 	public function actionDetails($id){
 		$details = Communities::getDetails($id);
+
 		$funds = FundsBreakdown::breakDown($id);
 		$wallets = Wallets::getUserWallets();
 		$fund = "";
@@ -27,7 +33,11 @@ class CommunityController extends Controller
 				$fund = $fund.",['".$funds[$i]["breakdown"]."',".$funds[$i]["percentage"]."]";
 			}
 		}
-		$this->render('view',array('detail'=>$details,'funds'=>$fund,'wallets'=>$wallets));
+		if($details['result']['community_owner']['id'] == $_SESSION['id']){
+			$this->redirect(array('community/dashboard/'.$id));
+		}else{
+			$this->render('view',array('detail'=>$details,'funds'=>$fund,'wallets'=>$wallets));
+		}
 	}
 }
 ?>

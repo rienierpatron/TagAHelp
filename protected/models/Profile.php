@@ -12,6 +12,7 @@ class Profile extends CActiveRecord{
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
 		$data = json_decode(curl_exec($ch),TRUE);
 		//Common::pre($data);
+		$_SESSION['name'] = $data['result']['user_firstname']." ".$data['result']['user_lastname'];
 		$_SESSION['id'] = $data['result']['id'];
 
 		return $data;

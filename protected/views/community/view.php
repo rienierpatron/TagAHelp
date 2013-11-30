@@ -43,8 +43,9 @@
 	            			} ?>
 	            		</select>
 	            		<br/>
-	            		<input type="text" class="form-control" id="amt" placeholder="Enter Amount">
-	            		<input type="submit" class="btn btn-danger" id="donate" value="Donate" style="display:none">
+	            		<input type="hidden" name="community" value="<?php echo $_GET['id']; ?>">
+	            		<input type="text" name="amount" class="form-control" id="amt" placeholder="Enter Amount">
+	            		<input type="submit" class="btn btn-danger" id="donate" value="Donate">
 	            	</form>
 	            </div>
 	        </div>
@@ -71,26 +72,6 @@
 		$wallet = false;
 		$amount = false;
 		HELP.map.getLocation("<?php echo $detail['result']['community_address1'].' '.$detail['result']['community_address2'].' '.$detail['result']['community_city'].' '.$_SESSION['country']; ?>","<?php echo $detail['result']['community_name']; ?>");
-		$('#wallet').change(function(){
-			if($(this+"option:selected").attr('data-id') > $('#amt').val()){
-				$wallet = true;
-			}
-			if($wallet == true && $amount == true){
-				$('#donate').show();
-			}else{
-				$('#donate').hide();
-			}
-		});
-		$('#amt').keyup(function(){
-			if($("wallet option:selected").attr('data-id') > $(this).val()){
-				$amount = true;
-			}
-			if($wallet == true && $amount == true){
-				$('#donate').show();
-			}else{
-				$('#donate').hide();
-			}
-		});
 
 	});
 		
