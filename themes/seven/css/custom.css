@@ -67,6 +67,9 @@ h2{
 #profileIndex .userWalletsTable{
 	margin-top:-10px;
 }
+#profileIndex .userWalletAmount{
+	text-align: right;
+}
 #profileIndex .errorMessage{
 	margin-top:-15px;
 	padding-top: 12px;

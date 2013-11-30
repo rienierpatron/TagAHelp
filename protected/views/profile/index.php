@@ -48,7 +48,7 @@
 						                    <td class="col-md-10">
 						                    	<?php echo $walletValue['wallet_name'];?>
 						                    </td>
-						                    <td class="pull-right">
+						                    <td class="userWalletAmount">
 						                    	<?php echo $walletValue['balance_amount'];?>
 						                    </td>
 				                		</tr>
