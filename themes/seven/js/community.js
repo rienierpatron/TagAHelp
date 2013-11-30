@@ -31,11 +31,35 @@ HELP.community = {
 			$("#save-field").click(function(){
 				var fields = {};
 				var elems = $('#fund-allotment > tr');
+				var total_allotment = 0;
+				
 				for(i=2;i<elems.length;i++){
 					var cell_unit = $(elems[i].cells);
-					fields[$(cell_unit[0]).find('input').val()] = $(cell_unit[1]).find('input').val();	
+					
+					if(!$.isNumeric($(cell_unit[1]).find('input').val())){
+						alert('ERROR: Invalid input.\nPlease check the percentage.');
+						return;
+					}
+
+					if($(cell_unit[0]).find('input').val().length<1){
+						alert('ERROR: Invalid input.\nParticular cannot be empty.');
+						return;
+					}
+
+					total_allotment+=parseInt($(cell_unit[1]).find('input').val());
+
+					fields[$(cell_unit[0]).find('input').val()] = $(cell_unit[1]).find('input').val();
+					
 				}
-				console.log(fields);
+
+					if((total_allotment) > 80){
+						alert('Error: Allotment overflow.\nPlease specify the percentage of particulars for a total of 100%');
+					}
+
+					if((total_allotment) < 80){
+						alert('Error: Insufficient allotment.\nPlease specify the percentage of particulars for a total of s100%');
+					}
+
 			});
 		});
 	},

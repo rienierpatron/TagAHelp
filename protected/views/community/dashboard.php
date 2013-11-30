@@ -4,8 +4,9 @@
 		<div class="col-md-6">
 			<div class="widget-container fluid-height">
 				<div class="heading">
-					<i class="icon-list-alt"></i>Community Details
-				</div>
+	                <i class="icon-list-alt"></i>Community Details
+	                <a href="#" class="fb-share btn btn-small btn-danger pull-right"><i class="icon-facebook"></i>Share</a>
+	            </div>
 				<div class="widget-content padded">
 					<table class="table table-filters">
 						<tbody>
