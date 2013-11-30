@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class SiteController extends Controller
 {
 	/**
@@ -27,8 +27,31 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
+		if(isset($_GET['code'])){
+			$params_string = "";
+			$url = 'https://api.tagbond.com/oauth/accesstoken';
+			$params = array(
+				'client_id'=>'1c1404acc0c82af4',
+				'client_secret'=>'15acf21eaaa024c2aa8ddaff28078d7e',
+				'grant_type'=>'authorization_code',
+				'code'=>$_GET['code'],
+				'redirect_uri'=>'http://localhost/TagAHelp/site/index'
+			);
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+			$data = json_decode(curl_exec($ch),TRUE);
+			curl_close($ch);
+			if($data['status'] == "success"){
+				$_SESSION['token'] = $data['result']['access_token'];
+				$this->redirect(array('profile/index'));
+			}else{
+				echo "error";exit;
+			}
+		}
 		$this->render('index');
 	}
 
@@ -46,58 +69,13 @@ class SiteController extends Controller
 		}
 	}
 
-	/**
-	 * Displays the contact page
-	 */
-	public function actionContact()
-	{
-		$model=new ContactForm;
-		if(isset($_POST['ContactForm']))
-		{
-			$model->attributes=$_POST['ContactForm'];
-			if($model->validate())
-			{
-				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-				$headers="From: $name <{$model->email}>\r\n".
-					"Reply-To: {$model->email}\r\n".
-					"MIME-Version: 1.0\r\n".
-					"Content-Type: text/plain; charset=UTF-8";
-
-				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
-				$this->refresh();
-			}
-		}
-		$this->render('contact',array('model'=>$model));
-	}
-
-	/**
-	 * Displays the login page
-	 */
 	public function actionLogin()
 	{
-		$model=new LoginForm;
-
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+		if(isset($_GET['code']))
 		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
+			echo "aw";
 		}
-
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
 	}
-
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */

@@ -1,0 +1,25 @@
+/assets/*
+/protected/runtime/*
+/protected/config/main_dev.php
+/protected/config/main_production.php
+/protected/config/console_dev.php
+/protected/config/console_production.php
+/protected/extensions/directmongosuite/components/EDMSConnection.php
+# Can ignore specific files
+Thumbs.db
+nbproject
+nl.sh
+# Use wildcards as well
+*.php.swp
+*.php~
+*.js~
+*.css~
+*.less~
+*.html~
+*.htm~
+*.htaccess~
+# Development Specifics
+*.orig
+*~
+*._.DS_Store
+.nfs00000000000*
