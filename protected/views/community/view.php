@@ -34,6 +34,17 @@
 	            </div>
 	            <div class="widget-content padded">
 	            	<form name="frm" method="POST" action="<?php echo $this->createUrl('funds/donate'); ?>">
+	            		<label>Select Wallet</label>
+	            		<select name="wallet" class="form-control" id="wallet">
+	            			<?php for($counter = 0; $counter < sizeOf($wallets['result']); $counter++){
+	            				if($wallets['result'][$counter]['balance_amount'] != 0){
+	            					echo "<option value=".$wallets['result'][$counter]['wallet_id']." id=".$wallets['result'][$counter]['balance_amount'].">".$wallets['result'][$counter]['wallet_name']." => ".$wallets['result'][$counter]['balance_amount']."</option>";
+	            				}
+	            			} ?>
+	            		</select>
+	            		<br/>
+	            		<input type="text" class="form-control" placeholder="Enter Amount">
+	            		<input type="submit" class="btn btn-danger" value="Donate" style="display:none">
 	            	</form>
 	            </div>
 	        </div>
@@ -58,37 +69,6 @@
 <script>
 	$(document).ready(function(){
 		HELP.map.getLocation("<?php echo $detail['result']['community_address1'].' '.$detail['result']['community_address2'].' '.$detail['result']['community_city'].' '.$_SESSION['country']; ?>","<?php echo $detail['result']['community_name']; ?>");
+		HELP.graphs.getAllotment('<?php echo $funds; ?>');
 	});
-		
-	 // Load the Visualization API and the piechart package.
-      google.load('visualization', '1.0', {'packages':['corechart']});
-
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.setOnLoadCallback(drawChart);
-
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
-      	
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Breakdown');
-        data.addColumn('number', 'Percentage');
-        data.addRows([
-          <?php echo $funds; ?>
-        ]);
-
-        // Set chart options
-        var options = {'title':'Where Does your Donations Go?',
-                       'height':400};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-         $(window).resize(function(){
-		    chart.draw(data, options);
-		  });
-      }
-     
 </script>

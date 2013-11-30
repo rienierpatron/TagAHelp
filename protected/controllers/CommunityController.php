@@ -18,6 +18,7 @@ class CommunityController extends Controller
 	public function actionDetails($id){
 		$details = Communities::getDetails($id);
 		$funds = FundsBreakdown::breakDown($id);
+		$wallets = Wallets::getUserWallets();
 		$fund = "";
 		for($i = 0; $i< sizeOf($funds); $i++){
 			if($i == 0){
@@ -26,7 +27,7 @@ class CommunityController extends Controller
 				$fund = $fund.",['".$funds[$i]["breakdown"]."',".$funds[$i]["percentage"]."]";
 			}
 		}
-		$this->render('view',array('detail'=>$details,'funds'=>$fund));
+		$this->render('view',array('detail'=>$details,'funds'=>$fund,'wallets'=>$wallets));
 	}
 }
 ?>
