@@ -63,6 +63,19 @@ h2{
 	color: #999999;
 	font-weight: 300;
 }
-#profileIndex .userWallets, #profileIndex .userWalletsTable{
+#profileIndex .userWallets,
+#profileIndex .userWalletsTable{
 	margin-top:-10px;
+}
+#profileIndex .errorMessage{
+	margin-top:-15px;
+	padding-top: 12px;
+	padding-right: 15px;
+	padding-bottom: 12px;
+	padding-left: 15px;
+	background: #e5e5ea;
+	border-color:2px solid #cbcbcb;
+	-webkit-border-radius: 13px;
+	-moz-border-radius: 13px;
+	border-radius: 13px;
 }

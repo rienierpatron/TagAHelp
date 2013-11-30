@@ -1,4 +1,7 @@
-<?php $userInfo = $info['result']; ?>
+<?php 
+	$userInfo = $info['result']; 
+	$userWallet = $wallet['result']; 
+?>
 <div id="profileIndex">
 	<div class="main_body">
 		<div class="row">
@@ -30,19 +33,31 @@
 				</div>
 				<div class="widget-container fluid-height userWallets">
 					<div class="heading">
-						<i class="icon-list-alt"></i>Wallets
+						<i class="icon-money"></i>Wallets
 					</div>
 					<div class="widget-content padded">
 						<table class="table table-filters userWalletsTable">
 			                <tbody>
-			                		<tr>
-			                			<td class="filter-category green col-md-2">
-			                				<i class="icon-money"></i>
-					                    	<div class="arrow-left"></div>
-					                    </td>
-					                    <td class="col-md-10"0>jella divina</td>
-					                    <td>1,000</td>
-			                		</tr>
+			                	<?php if($userWallet){
+			                		foreach ($userWallet as $key => $walletValue) { ?>
+				                		<tr>
+				                			<td class="filter-category green col-md-2">
+						                    	<?php echo $walletValue['currency_code'];?>
+						                    	<div class="arrow-left"></div>
+						                    </td>
+						                    <td class="col-md-10">
+						                    	<?php echo $walletValue['wallet_name'];?>
+						                    </td>
+						                    <td class="pull-right">
+						                    	<?php echo $walletValue['balance_amount'];?>
+						                    </td>
+				                		</tr>
+				                	<?php } ?>
+				                <?php }else{?>
+				                	<div class="errorMessage">
+			                			<?php echo "No wallet found." ;?>
+			                		</div>
+			                	<?php }?>
 			                </tbody>
 			            </table>					
 			        </div>
