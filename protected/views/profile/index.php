@@ -13,11 +13,10 @@
 					<div class="widget-content padded">
 						<div class="row userInfo">
 							<center>
-							<div class="col-md-3">
-								<img class="userImage" src="http://tagbond.com/image/user/<?php echo $_SESSION['id'];?>">
-							</div>
-							
-						</center>
+								<div class="col-md-3">
+									<img class="userImage" src="http://tagbond.com/image/user/<?php echo $_SESSION['id'];?>">
+								</div>
+							</center>
 							<br>
 							<div class="userDetails col-md-5 pull-left">
 								<div class="userName" >
