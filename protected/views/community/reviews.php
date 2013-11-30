@@ -3,7 +3,7 @@
 		<div class="col-md-12">
 			<div class="widget-container fluid-height">
 	            <div class="heading">
-	                <i class="icon-list-alt"></i><b>Reviews (Charity <?php echo $_GET['id']; ?>)</b>
+	                <i class="icon-comment"></i><b>Forum (Charity <?php echo $_GET['id']; ?>)</b>
 	            </div>
 	            <div class="widget-content padded">
 	            	<div class="profile-details">
@@ -11,7 +11,7 @@
 				            <textarea name="review" class="form-control" placeholder="Your review here"></textarea>
 				            <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
 				            <br/>
-				            <input type="submit" value="Post Review" class="btn btn-danger">
+				            <input type="submit" value="Post" class="btn btn-danger">
 			            </form>
 			        </div>
 	               
@@ -20,12 +20,12 @@
 		</div>
 	</div>
 	<?php if(sizeOf($reviews) != 0){ ?>
-		<?php for($counter = 0; $counter < sizeOf($reviews); $counter++){ ?>
+		<?php for($counter = sizeOf($reviews)-1; $counter > 0; $counter--){ ?>
 			<div class="row">
 				<div class="col-md-12">
 			        <div class="widget-container fluid-height">
 			            <div class="heading">
-			                <?php echo $reviews[$counter]['user_firstname']." ".$reviews[$counter]['user_lastname']; ?>
+			                <?php echo $reviews[$counter]['sender']; ?>
 			                <small class="pull-right"><?php echo $reviews[$counter]['date']; ?></small>
 			            </div>
 			            <div class="widget-content padded">

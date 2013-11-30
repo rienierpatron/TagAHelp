@@ -78,7 +78,7 @@ class CommunityController extends Controller
 	}
 	public function actionReviews($id){
 		if(isset($_POST['review'])){
-			$add = Reviews::addReview($_POST['id'],'community',$_POST['review']);
+			$add = Reviews::addReview($_POST['id'],$_POST['review']);
 			if($add == "success"){
 				Yii::app()->user->setFlash('msg', 'Review posted.');
 				Yii::app()->user->setFlash('msgClass', 'alert alert-success');
@@ -87,7 +87,7 @@ class CommunityController extends Controller
 				Yii::app()->user->setFlash('msgClass', 'alert alert-danger');
 			}
 		}
-		$reviews = Reviews::getReviews($id,'community');
+		$reviews = Reviews::getReviews($id);
 		$this->render('reviews',array('reviews'=>$reviews));
 	}
 }

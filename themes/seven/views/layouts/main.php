@@ -73,11 +73,11 @@
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/fitvids.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/jquery.sparkline.min.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/respond.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/map.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/polyfills.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/demo1.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/modernizr-2.6.2.min.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/community.js');
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/map.js');
 
 	?>
 	<?php if(isset($_SESSION['token'])){

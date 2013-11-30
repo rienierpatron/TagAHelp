@@ -17,7 +17,7 @@
 		                			<?php $counter1++; ?>
 				                		<tr>
 						                    <td class="col-md-10"><?php echo $owned[$counter]['community_name']; ?></td>
-						                    <td><a href="<?php echo $this->createUrl('community/dashboard/'.$owned[$counter]['community_id']); ?>" data-id="<?php echo $owned[$counter]['community_id']; ?>" class="btn btn-primary">View Info</a></td>
+						                    <td><a href="<?php echo $this->createUrl('community/dashboard/'.$owned[$counter]['community_id']); ?>" data-id="<?php echo $owned[$counter]['community_id']; ?>" class="btn btn-danger pull-right">View Info</a></td>
 				                		</tr>
 				                	<?php } ?>
 		                	<?php } ?>
@@ -42,7 +42,7 @@
 		                			<?php $counter2++; ?>
 				                		<tr>
 						                    <td class="col-md-10"><?php echo $community[$counter]['community_name']; ?></td>
-						                    <td><a href="<?php echo $this->createUrl('community/details/'.$community[$counter]['community_id']); ?>" data-id="<?php echo $community[$counter]['community_id']; ?>" class="btn btn-primary">View Info</a></td>
+						                    <td><a href="<?php echo $this->createUrl('community/details/'.$community[$counter]['community_id']); ?>" data-id="<?php echo $community[$counter]['community_id']; ?>" class="btn btn-danger pull-right">View Info</a></td>
 				                		</tr>
 				                	<?php } ?>
 		                	<?php } ?>
