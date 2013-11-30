@@ -13,8 +13,9 @@ class CommunityController extends Controller
 	}
 	public function actionDashboard($id){
 		$details = Communities::getDetails($id);
+		$funds = FundsBreakdown::breakDown($id);
 		if($details['result']['community_owner']['id'] == $_SESSION['id']){
-			$this->render('dashboard',array('detail'=>$details));
+			$this->render('dashboard',array('detail'=>$details,'funds'=>$funds));
 		}else{
 			$this->redirect(array('community/dashboard/'.$id));
 		}
@@ -38,7 +39,43 @@ class CommunityController extends Controller
 			$this->render('view',array('detail'=>$details,'funds'=>$fund,'wallets'=>$wallets));
 		}
 	}
-
+	public function actionSaveDonationRate(){
+		$communityId = $_POST['values']['communityId'];
+		$rate = $_POST['values']['rate'];
+		$name = $_POST['values']['name'];
+		if($rate){
+			$rateContainer = substr($rate,0);
+			if(count($rateContainer)!=0 && $rateContainer!=NULL){
+				$rates = explode('=|=', $rateContainer);
+			}
+		}
+		if($name){
+			$nameContainer = substr($name,0);
+			if(count($nameContainer)!=0 && $nameContainer!=NULL){
+				$names = explode('=|=', $nameContainer);
+			}
+		}
+		$funds = FundsBreakdown::model()->findAllByAttributes(array('owner'=>$communityId));
+		if($funds){
+			$fundsList = Yii::app()->db->createCommand()
+			->delete('funds_breakdown',"owner=".$communityId."");
+			for($i = 0; $i <=count($rates);$i++){
+				$funds = new FundsBreakdown;
+				$funds->owner = $communityId;
+				$funds->breakdown = $names[$i];
+				$funds->percentage = $rates[$i];
+				$funds->save();
+			}
+		}else{
+			for($i = 0; $i <=count($rates);$i++){
+				$funds = new FundsBreakdown;
+				$funds->owner = $communityId;
+				$funds->breakdown = $names[$i];
+				$funds->percentage = $rates[$i];
+				$funds->save();
+			}
+		}
+	}
 	public function actionReviews($id){
 		if(isset($_POST['review'])){
 			$add = Reviews::addReview($_POST['id'],'community',$_POST['review']);

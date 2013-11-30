@@ -83,3 +83,16 @@ h2{
 	-moz-border-radius: 13px;
 	border-radius: 13px;
 }
+/*community dashboard*/
+#communityDashboard .alignCenter{
+	text-align: center;
+}
+#communityDashboard .percentageRate{
+	width:40%;
+}
+#communityDashboard .displayTotalPercentage,
+#communityDashboard .computeTotalPercentage {
+	font-weight: bold;	
+	padding-left:10px;
+	font-size:18px;
+}
