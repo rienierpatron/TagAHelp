@@ -28,6 +28,13 @@
 		            </table>
 	            </div>
 	        </div>
+	        <?php $walletCount = 0; ?>
+	        <?php for($counter = 0; $counter < sizeOf($wallets['result']); $counter++){
+				if($wallets['result'][$counter]['balance_amount'] != 0){
+					$walletCount++;
+				}
+			} ?>
+			<?php if($walletCount > 0){ ?>
 	        <div class="widget-container fluid-height">
 	            <div class="heading">
 	                <i class="icon-list-alt"></i>Donate Funds
@@ -49,6 +56,16 @@
 	            	</form>
 	            </div>
 	        </div>
+	        <?php }else{ ?>
+	        <div class="widget-container fluid-height">
+	            <div class="heading">
+	                <i class="icon-list-alt"></i>Donate Funds
+	            </div>
+	            <div class="widget-content padded">
+	            	Please add a wallet on your Tagbond account and add funds to enable charity donation.
+	            </div>
+	        </div>
+	        <?php } ?>
 	        <div class="widget-container fluid-height">
 	            <div class="heading">
 	                <i class="icon-list-alt"></i>Location
