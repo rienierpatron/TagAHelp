@@ -17,3 +17,8 @@
      </ul>
 </div>
 <div id="cn-overlay" class="cn-overlay"></div>
+<script>
+	$(document).ready(function(){
+		setTimeout( "jQuery('#flash').slideUp();",3000 );
+	});
+</script>
