@@ -32,5 +32,37 @@ h2{
 		margin-top:-75px !important;
 	}
 }
-
-
+/*profile index*/
+#profileIndex .userImage{
+	height: 120px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, .6);
+	-webkit-box-shadow: 0 0 6px rgba(0, 0, 0, .6);
+	-moz-box-shadow: 0 0 6px rgba(0, 0, 0, .6);
+}
+#profileIndex .userInfo{
+	padding-left:10px;
+	padding-bottom:20px;
+	border-bottom: 1px solid #cbcbcb;
+	float: center;
+}
+#profileIndex .userName{
+	font-size: 20px;
+	line-height: 1;
+	font-weight: 300;
+	display: inline-block;
+	margin-bottom: 6px; 
+	text-indent: 10px;
+}
+#profileIndex .userSocialNetworks{
+	text-indent:5px;
+	font-size: 13px;
+	margin-bottom: 2px;
+	color: #999999;
+	font-weight: 300;
+}
+#profileIndex .userWallets, #profileIndex .userWalletsTable{
+	margin-top:-10px;
+}
