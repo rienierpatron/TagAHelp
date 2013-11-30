@@ -1,11 +1,12 @@
 <div class="main_body">
+<div id="fb-root"></div>
 	<div class="row">
 		<div class="col-md-6">
 	        <div class="widget-container fluid-height">
 	            <div class="heading">
 	                <i class="icon-list-alt"></i>Community Details
 	                <a href="<?php echo $this->createUrl('community/reviews',array('id'=>$_GET['id'])); ?>" class="btn btn-small btn-danger pull-right">Reviews</a>
-	                <a href="#" class="btn btn-small btn-danger pull-right"><i class="icon-facebook"></i>Share</a>
+	                <a href="#" class="fb-share btn btn-small btn-danger pull-right"><i class="icon-facebook"></i>Share</a>
 	            </div>
 	            <div class="widget-content padded">
 	            	<table class="table table-filters">
@@ -86,6 +87,7 @@
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type='text/javascript' src="https://connect.facebook.net/en_US/all.js"></script>
 <script>
 	$(document).ready(function(){
 		$wallet = false;
@@ -118,3 +120,50 @@
 	}
      
 </script>
+<script>
+   
+   var app_token = '';
+   var current_page_token = '';
+   var page_id = '';
+   var page_name = '';
+  
+      FB.init({
+        appId      : '248159688675364',                        // App ID from the app dashboard
+        status     : true,                                 // Check Facebook Login status
+        xfbml      : true                                  // Look for social plugins on the page
+      });
+
+$(".fb-share").click(function(){
+
+	if(!FB.getLoginStatus()){
+		FB.login(function(response) {
+			if (response.authResponse) {	            
+				app_token = response.authResponse.accessToken;
+				post_to_profile();
+			} else {
+				alert('Cannot continue. Please login');
+			}
+		},{scope:'manage_pages,publish_stream,read_stream'});
+	}
+}); 
+
+    function post_to_profile(){
+              FB.ui({
+                method:'feed',
+                name:"<?php echo $detail['result']['community_name']; ?>",
+                link: 'http://localhost/tagAhelp/community/details/<?php echo $_GET["id"]; ?>',
+                caption:'A Tagbond Community',
+                picture:'http://tagbond.com/image/community/<?php echo $_GET["id"]; ?>',
+                description:"<?php echo $detail['result']['community_description']; ?>"
+              },function(response){
+                if(response && response.post_id){
+                  alert('Posted');
+                }
+                else alert('Not Posted');
+      })
+    }
+
+   
+
+
+  </script>

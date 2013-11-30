@@ -38,5 +38,5 @@ $(function(){
 	}
 	document.addEventListener('click', closeNav);
 
-})();
+});
 
