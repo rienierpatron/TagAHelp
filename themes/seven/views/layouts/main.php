@@ -1,45 +1,44 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
-<head>
-	<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap.css"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-switch.css"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/normalize.css"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/prettify.css"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/custom.css"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/style.css"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/application.css"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/fontawesome.css"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/font-awesome.css"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/isotope.css" media="all" rel="stylesheet"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/fullcalendar.css" media="all" rel="stylesheet"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/datatables.css" media="all" rel="stylesheet"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/classyscroll.css" media="all" rel="stylesheet"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/select2.css" media="all" rel="stylesheet"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/color/gray.css" media="all" rel="alternate stylesheet" title="gray-theme"/>
-	<link rel="icon" type="image/png" href="<?php echo Yii::app()->theme->baseUrl; ?>/images/favicon.ico">
-	<?php 
-		Yii::app()->getClientScript()->registerCoreScript( 'jquery.ui' );
-	?>
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-</head>
-<?php if(isset($_SESSION['token'])){ ?>
-	<body>
-<?php }else{ ?>
-	<body>
-<?php } ?>
-	<?php
-		if(isset($_SESSION['token'])){
+	<head>
+		<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-switch.css"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/normalize.css"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/prettify.css"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/custom.css"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/application.css"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/fontawesome.css"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/font-awesome.css"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/component1.css"/>
+
+		<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/isotope.css" media="all" rel="stylesheet"/>
+		<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/fullcalendar.css" media="all" rel="stylesheet"/>
+		<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/datatables.css" media="all" rel="stylesheet"/>
+		<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/classyscroll.css" media="all" rel="stylesheet"/>
+		<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/select2.css" media="all" rel="stylesheet"/>
+		<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/color/gray.css" media="all" rel="alternate stylesheet" title="gray-theme"/>
+		<link rel="icon" type="image/png" href="<?php echo Yii::app()->theme->baseUrl; ?>/images/favicon.ico">
+		<?php 
+			Yii::app()->getClientScript()->registerCoreScript( 'jquery.ui' );
+		?>
+		<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	</head>
+	<?php if(isset($_SESSION['token'])){ ?>
+		<body>
+	<?php }else{ ?>
+		<body>
+	<?php } ?>
+	<?php if(isset($_SESSION['token'])){
 			$this->renderPartial('//layouts/headers/header');
-		}
-	?>
-			<?php echo $content; ?>
+	}?>
+	<?php echo $content; ?>
 		
 	</body>
 	<?php
-
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/bootstrap.min.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/modernizr.custom.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/prettify.js');
@@ -75,7 +74,12 @@
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/jquery.sparkline.min.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/respond.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/map.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/polyfills.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/demo1.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/modernizr-2.6.2.min.js');
 
 	?>
-	
+	<?php if(isset($_SESSION['token'])){
+		$this->renderPartial('//layouts/footers/footer');
+	}?>
 </html>

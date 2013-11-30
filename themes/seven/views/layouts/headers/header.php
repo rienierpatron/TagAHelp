@@ -16,21 +16,3 @@
 	</div>
 	</div>
 <?php endif; ?>
-<style>
-/*.navi{
-	width: 33.35%;
-	height:50px;
-	border:1px solid #C02C2C;
-}
-.navi:hover{
-	border:1px solid #C02C2C;
-}
-.menubar{
-	width:100% !important;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 50px;
-} */
-</style>
