@@ -74,7 +74,7 @@
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/fitvids.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/jquery.sparkline.min.js');
 		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/respond.js');
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/profile.js');
+		Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl.'/js/map.js');
 
 	?>
 	

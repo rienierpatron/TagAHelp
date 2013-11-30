@@ -17,7 +17,16 @@ class CommunityController extends Controller
 	}
 	public function actionDetails($id){
 		$details = Communities::getDetails($id);
-		$this->render('view',array('detail'=>$details));
+		$funds = FundsBreakdown::breakDown($id);
+		$fund = "";
+		for($i = 0; $i< sizeOf($funds); $i++){
+			if($i == 0){
+				$fund = "['".$funds[$i]["breakdown"]."',".$funds[$i]["percentage"]."]";
+			}else{
+				$fund = $fund.",['".$funds[$i]["breakdown"]."',".$funds[$i]["percentage"]."]";
+			}
+		}
+		$this->render('view',array('detail'=>$details,'funds'=>$fund));
 	}
 }
 ?>

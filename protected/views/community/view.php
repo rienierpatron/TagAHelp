@@ -30,6 +30,15 @@
 	        </div>
 	        <div class="widget-container fluid-height">
 	            <div class="heading">
+	                <i class="icon-list-alt"></i>Donate Funds
+	            </div>
+	            <div class="widget-content padded">
+	            	<form name="frm" method="POST" action="<?php echo $this->createUrl('funds/donate'); ?>">
+	            	</form>
+	            </div>
+	        </div>
+	        <div class="widget-container fluid-height">
+	            <div class="heading">
 	                <i class="icon-list-alt"></i>Location
 	            </div>
 	            <div class="widget-content padded">
@@ -40,49 +49,46 @@
 	            </div>
 	        </div>
 	    </div>
-	    <div class="col-md-6">
+	    <div class="col-md-6" id="chart_div">
 	    </div>
 	</div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script>
-	var geocoder;
-	var address = "<?php echo $detail['result']['community_address1'].' '.$detail['result']['community_address2'].' '.$detail['result']['community_city'].' '.$_SESSION['country']; ?>";
-	var map;
-	geocoder = new google.maps.Geocoder();
-	var mapOptions = {
-		zoom: 17,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	}
-	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-	geocoder.geocode( { 'address': address}, function(results, status) {
-	    if (status == google.maps.GeocoderStatus.OK) {
-
-			map.setCenter(results[0].geometry.location);
-
-			var marker = new google.maps.Marker({
-				map: map,
-				position: results[0].geometry.location,
-				icon: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Pink-icon.png',
-
-			});
-			
-			var infowindow = new google.maps.InfoWindow({
-				maxWidth: 250,
-			    content: '<p style="font-size:12px;"><b>Community: </b><?php echo $detail["result"]["community_name"]; ?><br/><b>Address : </b>'+address+'</p>'
-			});
-			marker.setAnimation(google.maps.Animation.DROP);
-			google.maps.event.addListener(marker, 'click', function() {
-			    infowindow.open(marker.get('map'), marker);
-			  });
-			$('.lat').html("<b>Latitude : </b>"+results[0].geometry.location.lat());
-			$('.long').html("<b>Longitude : </b>"+results[0].geometry.location.lng());
-
-	    } else {
-	      	$('.map-panel').hide();
-	      	$('.coordinates').hide();
-	      	$('.location-not-found').show();
-	    }
+	$(document).ready(function(){
+		HELP.map.getLocation("<?php echo $detail['result']['community_address1'].' '.$detail['result']['community_address2'].' '.$detail['result']['community_city'].' '.$_SESSION['country']; ?>","<?php echo $detail['result']['community_name']; ?>");
 	});
+		
+	 // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+      	
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Breakdown');
+        data.addColumn('number', 'Percentage');
+        data.addRows([
+          <?php echo $funds; ?>
+        ]);
+
+        // Set chart options
+        var options = {'title':'Where Does your Donations Go?',
+                       'height':400};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+         $(window).resize(function(){
+		    chart.draw(data, options);
+		  });
+      }
+     
 </script>

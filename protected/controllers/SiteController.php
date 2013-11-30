@@ -71,19 +71,25 @@ class SiteController extends Controller
 				$this->render('error', $error);
 		}
 	}
-
-	public function actionLogin()
-	{
-		if(isset($_GET['code']))
-		{
-			echo "aw";
-		}
-	}
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */
 	public function actionLogout()
 	{
+		$params_string = "";
+		$url = 'https://api.tagbond.com/user/logout/';
+		$params = array(
+			'access_token'=>$_SESSION['token']
+		);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+		curl_exec($ch);
+		curl_close($ch);
+		https://api.tagbond.com/user/logout/
 		session_destroy();
 		$this->redirect(Yii::app()->homeUrl);
 	}

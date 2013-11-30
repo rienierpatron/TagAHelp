@@ -17,6 +17,7 @@ class FundsController extends Controller
 	}
 	public function actionDetails($id){
 		$details = Communities::getDetails($id);
+		$getBreakDown = FundsBreakdown::breakDown($id);
 		$this->render('view',array('detail'=>$details));
 	}
 }
