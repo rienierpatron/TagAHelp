@@ -12,8 +12,14 @@
 					</div>
 					<div class="widget-content padded">
 						<div class="row userInfo">
-							<img class="userImage pull-left" src="http://tagbond.com/image/user/<?php echo $_SESSION['id'];?>">
-							<div class="userDetails col-md-5">
+							<center>
+							<div class="col-md-3">
+								<img class="userImage" src="http://tagbond.com/image/user/<?php echo $_SESSION['id'];?>">
+							</div>
+							
+						</center>
+							<br>
+							<div class="userDetails col-md-5 pull-left">
 								<div class="userName" >
 									<?php echo $userInfo['user_firstname']." ".$userInfo['user_lastname']." - ".$userInfo['id']; ?>
 								</div>
