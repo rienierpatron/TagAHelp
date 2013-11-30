@@ -12,7 +12,7 @@
 		                			<?php if($owned[$counter]['community_verified'] == 2){ ?>
 				                		<tr>
 						                    <td class="col-md-10"><?php echo $owned[$counter]['community_name']; ?></td>
-						                    <td><a href="<?php echo $this->createUrl('community/details/'.$owned[$counter]['community_id']); ?>" data-id="<?php echo $owned[$counter]['community_id']; ?>" class="btn btn-primary">View Info</a></td>
+						                    <td><a href="<?php echo $this->createUrl('community/dashboard/'.$owned[$counter]['community_id']); ?>" data-id="<?php echo $owned[$counter]['community_id']; ?>" class="btn btn-primary">View Info</a></td>
 				                		</tr>
 				                	<?php } ?>
 		                	<?php } ?>

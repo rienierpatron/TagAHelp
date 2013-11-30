@@ -1,6 +1,6 @@
 <?php
 session_start();
-class CommunityController extends Controller
+class FundsController extends Controller
 {
 	public function actionIndex(){
 		if(isset($_SESSION['token'])){
