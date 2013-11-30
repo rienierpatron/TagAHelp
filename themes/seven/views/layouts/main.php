@@ -18,9 +18,6 @@
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/datatables.css" media="all" rel="stylesheet"/>
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/classyscroll.css" media="all" rel="stylesheet"/>
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/select2.css" media="all" rel="stylesheet"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/color/green.css" media="all" rel="alternate stylesheet" title="green-theme"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/color/orange.css" media="all" rel="alternate stylesheet" title="orange-theme"/>
-	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/color/magenta.css" media="all" rel="alternate stylesheet" title="magenta-theme"/>
 	<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/color/gray.css" media="all" rel="alternate stylesheet" title="gray-theme"/>
 	<link rel="icon" type="image/png" href="<?php echo Yii::app()->theme->baseUrl; ?>/images/favicon.ico">
 	<?php 
@@ -31,7 +28,7 @@
 <?php if(isset($_SESSION['token'])){ ?>
 	<body>
 <?php }else{ ?>
-	<body style="padding-bottom:50px;">
+	<body>
 <?php } ?>
 	<?php
 		if(isset($_SESSION['token'])){
