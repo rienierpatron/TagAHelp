@@ -38,13 +38,13 @@
 	            		<select name="wallet" class="form-control" id="wallet">
 	            			<?php for($counter = 0; $counter < sizeOf($wallets['result']); $counter++){
 	            				if($wallets['result'][$counter]['balance_amount'] != 0){
-	            					echo "<option value=".$wallets['result'][$counter]['wallet_id']." id=".$wallets['result'][$counter]['balance_amount'].">".$wallets['result'][$counter]['wallet_name']." => ".$wallets['result'][$counter]['balance_amount']."</option>";
+	            					echo "<option value=".$wallets['result'][$counter]['wallet_id']." data-id=".$wallets['result'][$counter]['balance_amount'].">".$wallets['result'][$counter]['wallet_name']." => ".$wallets['result'][$counter]['balance_amount']."</option>";
 	            				}
 	            			} ?>
 	            		</select>
 	            		<br/>
-	            		<input type="text" class="form-control" placeholder="Enter Amount">
-	            		<input type="submit" class="btn btn-danger" value="Donate" style="display:none">
+	            		<input type="text" class="form-control" id="amt" placeholder="Enter Amount">
+	            		<input type="submit" class="btn btn-danger" id="donate" value="Donate" style="display:none">
 	            	</form>
 	            </div>
 	        </div>
@@ -68,7 +68,53 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script>
 	$(document).ready(function(){
+		$wallet = false;
+		$amount = false;
 		HELP.map.getLocation("<?php echo $detail['result']['community_address1'].' '.$detail['result']['community_address2'].' '.$detail['result']['community_city'].' '.$_SESSION['country']; ?>","<?php echo $detail['result']['community_name']; ?>");
-		HELP.graphs.getAllotment('<?php echo $funds; ?>');
+		$('#wallet').change(function(){
+			if($(this+"option:selected").attr('data-id') > $('#amt').val()){
+				$wallet = true;
+			}
+			if($wallet == true && $amount == true){
+				$('#donate').show();
+			}else{
+				$('#donate').hide();
+			}
+		});
+		$('#amt').keyup(function(){
+			if($("wallet option:selected").attr('data-id') > $(this).val()){
+				$amount = true;
+			}
+			if($wallet == true && $amount == true){
+				$('#donate').show();
+			}else{
+				$('#donate').hide();
+			}
+		});
+
 	});
+		
+	google.load('visualization', '1.0', {'packages':['corechart']});
+
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'Breakdown');
+		data.addColumn('number', 'Percentage');
+		data.addRows([
+		  <?php echo $funds; ?>
+		]);
+
+		var options = {'title':'Where Does your Donations Go?',
+		               'height':400};
+
+		var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+		chart.draw(data, options);
+		$(window).resize(function(){
+			chart.draw(data, options);
+		});
+	}
+     
 </script>
