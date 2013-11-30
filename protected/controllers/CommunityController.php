@@ -22,7 +22,6 @@ class CommunityController extends Controller
 	}
 	public function actionDetails($id){
 		$details = Communities::getDetails($id);
-
 		$funds = FundsBreakdown::breakDown($id);
 		$wallets = Wallets::getUserWallets();
 		$fund = "";
@@ -38,6 +37,21 @@ class CommunityController extends Controller
 		}else{
 			$this->render('view',array('detail'=>$details,'funds'=>$fund,'wallets'=>$wallets));
 		}
+	}
+
+	public function actionReviews($id){
+		if(isset($_POST['review'])){
+			$add = Reviews::addReview($id,'community',$_POST['review']);
+			if($add == "success"){
+				Yii::app()->user->setFlash('msg', 'Review posted.');
+				Yii::app()->user->setFlash('msgClass', 'alert alert-success');
+			}else{
+				Yii::app()->user->setFlash('msg', 'Error while posting review.');
+				Yii::app()->user->setFlash('msgClass', 'alert alert-danger');
+			}
+		}
+		$reviews = Reviews::getReviews($id,'community');
+		$this->render('reviews',array('reviews'=>$reviews));
 	}
 }
 ?>

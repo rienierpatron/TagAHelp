@@ -4,6 +4,7 @@
 	        <div class="widget-container fluid-height">
 	            <div class="heading">
 	                <i class="icon-list-alt"></i>Community Details
+	                <a href="<?php echo $this->createUrl('community/reviews',array('id'=>$_GET['id'])); ?>" class="btn btn-small btn-danger pull-right">Reviews</a>
 	            </div>
 	            <div class="widget-content padded">
 	            	<table class="table table-filters">

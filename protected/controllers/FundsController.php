@@ -40,6 +40,8 @@ class FundsController extends Controller
 		$data = json_decode(curl_exec($chTransfer),TRUE);
 		Common::pre($data);
 		curl_close($chTransfer);
+		Yii::app()->user->setFlash('msg', 'Donation transferred.');
+		Yii::app()->user->setFlash('msgClass', 'alert alert-success');
 		$this->redirect(array('community/details/'.$_POST['community']));
 	}
 }

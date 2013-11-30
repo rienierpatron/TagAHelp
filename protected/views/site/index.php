@@ -2,7 +2,7 @@
 
 <img src="<?php echo Yii::app()->theme->baseUrl.'/images/fav32-01.png'; ?>" alt="Tagbond" id="tag_logo" style="width:160px;">
 <br/>
-<a class="redirect btn btn-danger btn-large text-center" href="https://api.tagbond.com/oauth?client_id=1c1404acc0c82af4&response_type=code&redirect_uri=http://localhost/TagAHelp/site/index&scope=user.credits user.profiles user.communities">Tag Now</a>
+<a class="redirect btn btn-danger btn-large text-center" href="https://api.tagbond.com/oauth?client_id=1c1404acc0c82af4&response_type=code&redirect_uri=http://localhost/TagAHelp/site/index&scope=user.credits user.profiles user.communities user.reviews">Tag Now</a>
 </div>
 <style>
 

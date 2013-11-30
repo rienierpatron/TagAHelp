@@ -49,7 +49,8 @@ class SiteController extends Controller
 				$_SESSION['token'] = $data['result']['access_token'];
 				$this->redirect(array('profile/index'));
 			}else{
-				echo "error";exit;
+				Yii::app()->user->setFlash('msg', 'Error while logging in.');
+				Yii::app()->user->setFlash('msgClass', 'alert alert-danger');
 			}
 		}
 		if(isset($_SESSION['token'])){

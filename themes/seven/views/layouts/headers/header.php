@@ -6,16 +6,16 @@
     	</div>
 	</div>
 	<div class="container-fluid clearfix menubar">
-
+		<?php if(Yii::app()->user->hasFlash('msg')): ?>
+			<div class="text-center">
+			<div class="<?php echo Yii::app()->user->getFlash('msgClass'); ?>" id="flash">
+				<?php echo '<i class="icon-info-sign"> </i>'.Yii::app()->user->getFlash('msg') ?>
+			</div>
+			</div>
+		<?php endif; ?>
 	</div>
 </div>
-<?php if(Yii::app()->user->hasFlash('msg')): ?>
-	<div class="text-center">
-	<div class="<?php echo Yii::app()->user->getFlash('msgClass'); ?>" id="flash">
-		<?php echo '<i class="icon-info-sign"> </i>'.Yii::app()->user->getFlash('msg') ?>
-	</div>
-	</div>
-<?php endif; ?>
+
 <style>
 /*.navi{
 	width: 33.35%;
