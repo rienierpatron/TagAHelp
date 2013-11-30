@@ -59,7 +59,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=tagahelp',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'jellatin',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		
