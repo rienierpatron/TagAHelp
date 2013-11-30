@@ -1,0 +1,19 @@
+{
+    "manifest_version": 2,
+
+    "name": "Tagbond Chat",
+    "description": "Tagbond CHat",
+    "version": "1.0",
+
+    "permissions": [
+        "https://api.tagbond.com/",
+        "https://vm:2000/",
+        "http://vm:2000/"
+    ],
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "index.html"
+    },
+
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

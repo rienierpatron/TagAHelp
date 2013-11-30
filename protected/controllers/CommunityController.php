@@ -41,12 +41,12 @@ class CommunityController extends Controller
 
 	public function actionReviews($id){
 		if(isset($_POST['review'])){
-			$add = Reviews::addReview($id,'community',$_POST['review']);
+			$add = Reviews::addReview($_POST['id'],'community',$_POST['review']);
 			if($add == "success"){
 				Yii::app()->user->setFlash('msg', 'Review posted.');
 				Yii::app()->user->setFlash('msgClass', 'alert alert-success');
 			}else{
-				Yii::app()->user->setFlash('msg', 'Error while posting review.');
+				Yii::app()->user->setFlash('msg', 'Already reviewed.');
 				Yii::app()->user->setFlash('msgClass', 'alert alert-danger');
 			}
 		}

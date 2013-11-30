@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>	
+	</head>
+	<body>
+		<nav class="navbar navbar-default" role="navigation">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">TB Chat</a>
+			</div>				
+		</nav>
+
+		<div class="container page" id="login-page">
+			<form id="login-form" role="form">
+				<div class="row">
+					<div class="col-12">
+					</div>
+				</div>
+
+				<div class="form-group">
+				    <label for="login-form-email">Email address</label>
+					<input type="email" class="textfield form-control" name="login-form-email" id="login-form-email" placeholder="Enter email"/>
+				</div>
+
+				<div class="form-group">
+				    <label for="login-form-email">Password</label>
+					<input type="password" class="textfield form-control" name="login-form-password" id="login-form-password" placeholder="Enter password"/>
+				</div>
+
+				<div class="form-group">
+					<div class="col-6">
+						<button type="submit" class="btn btn-primary">Login with Tagbond</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div class="container page" id="userlist-page">
+			<ul class="nav">
+				
+			</ul>
+		</div>
+
+		<div class="container page" id="chat-page">
+			<div id="chat-list">
+			</div>
+
+			<div id="chat-type-container">
+				<input type="text" id="chat-text-field" data-id="" data-name=""/>
+			</div>
+		</div>
+
+		
+
+
+		<div id="ajax-loader"></div>
+
+	</body>
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/hogan.min.js"></script>
+	<!-- SOCKET IO -->
+	<script type="text/javascript" src="js/socket.io.js"></script>
+
+	<script type="text/javascript" src="js/app.js"></script>
+
+
+	<script id="user-online-template" type="text/template">
+		<li>
+			<a href="#" class="user-online" data-id="{{id}}" data-name="{{first_name}} {{last_name}}">
+				<img src="{{image}}" alt="thumbnail" class="img-thumbnail" width="42" height="42">
+				{{first_name}} {{last_name}}
+			</a>
+		</li>
+	</script>
+
+	<script id="chat-message-template" type="text/template">
+		<div class="list-group">
+			<a href="#" class="list-group-item">
+				<p class="text-{{alignment}}">
+					<img src="{{image}}" alt="thumbnail" class="img-thumbnail" width="42" height="42">
+					<strong>{{name}}</strong>
+				</p>
+				<p class="text-{{alignment}}">{{message}}</p>
+			</a>
+		</div>
+	</script>	
+</html>

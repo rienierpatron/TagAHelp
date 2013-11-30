@@ -9,6 +9,7 @@
 	            	<div class="profile-details">
 	            		<form name="frm" method="POST">
 				            <textarea name="review" class="form-control" placeholder="Your review here"></textarea>
+				            <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
 				            <br/>
 				            <input type="submit" value="Post Review" class="btn btn-danger">
 			            </form>
