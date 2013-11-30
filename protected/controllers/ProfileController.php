@@ -6,6 +6,7 @@ class ProfileController extends Controller
 		if(isset($_SESSION['token'])){
 			
 			$info = Profile::getUserData();
+			Common::pre($info);exit;
 			$this->render('index',array('info'=>$info));
 			
 		}else{
