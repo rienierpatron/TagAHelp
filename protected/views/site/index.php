@@ -1,5 +1,4 @@
 <div class="login-page text-center" id="bgMap">
-
 <img src="<?php echo Yii::app()->theme->baseUrl.'/images/fav32-01.png'; ?>" alt="Tagbond" id="tag_logo" style="width:160px;margin-top:-7px !important;"><a href="#" style="color:#EB3F3C;font-weight:bold;margin-left:-10px !important;margin-top:5px;text-decoration:underline"> A HELP</a>
 <br/>
 <br/>

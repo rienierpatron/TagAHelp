@@ -99,9 +99,9 @@ class FundsBreakdown extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public static function breakDown($owner){
+	public static function breakDown($owner)
+	{
 		$funds = FundsBreakdown::model()->findAllByAttributes(array('owner'=>$owner));
-
 		return $funds;
 	}
 }

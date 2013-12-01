@@ -112,7 +112,6 @@ class Reviews extends CActiveRecord
 		$model->comment = $review;
 		$model->receiver = $id;
 		$model->save(false);
-
 		return "success";
 	}
 }

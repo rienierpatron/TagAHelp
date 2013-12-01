@@ -83,7 +83,6 @@
 											</tr>
 										<?php }
 									}?>
-									
 									<tr class="displayTotalPercentage">
 										<td><b>TOTAL</b></td>
 										<td>
@@ -106,7 +105,6 @@
 <script type='text/javascript' src="https://connect.facebook.net/en_US/all.js"></script>
 <script>
 	$(document).ready(function(){
-		// HELP.map.getLocation("<?php echo $detail['result']['community_address1'].' '.$detail['result']['community_address2'].' '.$detail['result']['community_city'].' '.$_SESSION['country']; ?>","<?php echo $detail['result']['community_name']; ?>");
 		var geocoder;
 		var address = "<?php echo $detail['result']['community_address1'].' '.$detail['result']['community_address2'].' '.$detail['result']['community_city'].' '.$_SESSION['country']; ?>";
 		var community = "<?php echo $detail['result']['community_name']; ?>";
@@ -117,19 +115,14 @@
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		}
 		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
 		geocoder.geocode( { 'address': address}, function(results, status) {
 		    if (status == google.maps.GeocoderStatus.OK) {
-
 				map.setCenter(results[0].geometry.location);
-
 				var marker = new google.maps.Marker({
 					map: map,
 					position: results[0].geometry.location,
 					icon: 'http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Pink-icon.png',
-
 				});
-				
 				var infowindow = new google.maps.InfoWindow({
 					maxWidth: 250,
 				    content: '<p style="font-size:12px;"><b>Community: </b>'+community+'<br/><b>Address : </b>'+address+'</p>'
@@ -141,7 +134,6 @@
 				google.maps.event.addDomListener(window, 'resize', function() {
 				    map.setCenter(results[0].geometry.location);
 				});
-
 		    } else {
 		      	$('.location-not-found').show();
 		    }
@@ -151,51 +143,47 @@
 		HELP.community.computeDonationPercentage();
 		HELP.community.inputDonationPercentage();
 		HELP.community.saveDonationPercentage('<?php echo $_GET["id"];?>',"<?php echo $this->createUrl('community/saveDonationRate'); ?>");
-		
-	});
-	
+	});	
 </script>
+
 <script>
-   
-   var app_token = '';
-   var current_page_token = '';
-   var page_id = '';
-   var page_name = '';
+	var app_token = '';
+	var current_page_token = '';
+	var page_id = '';
+	var page_name = '';
   
-      FB.init({
-        appId      : '248159688675364',                        // App ID from the app dashboard
-        status     : true,                                 // Check Facebook Login status
-        xfbml      : true                                  // Look for social plugins on the page
-      });
+	FB.init({
+		appId      : '248159688675364',                     // App ID from the app dashboard
+		status     : true,                                 // Check Facebook Login status
+		xfbml      : true                                 // Look for social plugins on the page
+	});
 
-$(".fb-share").click(function(){
-
-	if(!FB.getLoginStatus()){
-		FB.login(function(response) {
-			if (response.authResponse) {	            
-				app_token = response.authResponse.accessToken;
-				post_to_profile();
-			} else {
-				alert('Cannot continue. Please login');
-			}
-		},{scope:'manage_pages,publish_stream,read_stream'});
-	}
-}); 
+    $(".fb-share").click(function(){
+		if(!FB.getLoginStatus()){
+			FB.login(function(response) {
+				if (response.authResponse) {	            
+					app_token = response.authResponse.accessToken;
+					post_to_profile();
+				} else {
+					alert('Cannot continue. Please login');
+				}
+			},{scope:'manage_pages,publish_stream,read_stream'});
+		}
+	}); 
 
     function post_to_profile(){
-              FB.ui({
-                method:'feed',
-                name:"<?php echo $detail['result']['community_name']; ?>",
-                link: 'http://localhost/tagAhelp/community/details/<?php echo $_GET["id"]; ?>',
-                caption:'A Tagbond Community',
-                picture:'http://tagbond.com/image/community/<?php echo $_GET["id"]; ?>',
-                description:"<?php echo $detail['result']['community_description']; ?>"
-              },function(response){
-                if(response && response.post_id){
-                  alert('Posted');
-                }
-                else alert('Not Posted');
-      })
+		FB.ui({
+			method:'feed',
+			name:"<?php echo $detail['result']['community_name']; ?>",
+			link: 'http://localhost/tagAhelp/community/details/<?php echo $_GET["id"]; ?>',
+			caption:'A Tagbond Community',
+			picture:'http://tagbond.com/image/community/<?php echo $_GET["id"]; ?>',
+			description:"<?php echo $detail['result']['community_description']; ?>"
+		},function(response){
+			if(response && response.post_id){
+			  alert('Posted');
+			}
+		else alert('Not Posted');
+        })
     }
-
   </script>

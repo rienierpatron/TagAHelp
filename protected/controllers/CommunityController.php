@@ -11,6 +11,7 @@ class CommunityController extends Controller
 			$this->redirect(array('site/index'));
 		}
 	}
+
 	public function actionDashboard($id){
 		$details = Communities::getDetails($id);
 		$funds = FundsBreakdown::breakDown($id);
@@ -21,6 +22,7 @@ class CommunityController extends Controller
 		}
 		
 	}
+
 	public function actionDetails($id){
 		$details = Communities::getDetails($id);
 		$funds = FundsBreakdown::breakDown($id);
@@ -39,6 +41,7 @@ class CommunityController extends Controller
 			$this->render('view',array('detail'=>$details,'funds'=>$fund,'wallets'=>$wallets));
 		}
 	}
+
 	public function actionSaveDonationRate(){
 		$communityId = $_POST['values']['communityId'];
 		$rate = $_POST['values']['rate'];
@@ -76,6 +79,7 @@ class CommunityController extends Controller
 			}
 		}
 	}
+
 	public function actionReviews($id){
 		if(isset($_POST['review'])){
 			$add = Reviews::addReview($_POST['id'],$_POST['review']);
@@ -90,5 +94,4 @@ class CommunityController extends Controller
 		$reviews = Reviews::getReviews($id);
 		$this->render('reviews',array('reviews'=>$reviews));
 	}
-}
-?>
+}?>

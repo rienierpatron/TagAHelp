@@ -32,7 +32,6 @@
 			            	<div class="profile-details">
 					            <?php echo $reviews[$counter]['comment']; ?>
 					        </div>
-			               
 			            </div>
 			        </div>
 			    </div>

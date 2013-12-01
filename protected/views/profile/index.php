@@ -85,7 +85,6 @@
 	                	<?php } ?>
 			        </div>
 				</div>
-
 			</div>
 			<div class="col-md-6">
 				<div class="widget-container fluid-height">
@@ -123,4 +122,3 @@
 		</div>
 	</div>
 </div>
-
