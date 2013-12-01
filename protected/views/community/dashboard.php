@@ -44,7 +44,7 @@
 			<div class="widget-container fluid-height">
 				<div class="heading">
 					<i class="icon-info-sign"></i>Where Does Donations Go?
-					<input type='button' id='edit-allotment' class='btn btn-danger pull-right' value='EDIT'>
+					<input type='button' id='edit-allotment' class='btn btn-danger pull-right' value='Edit'>
 					<div class='pull-right computeTotalPercentage' style="display:none">Total: <span class='totalPercentage'></span>%</div>
 				</div>
 				<div class="widget-content padded">
