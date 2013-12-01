@@ -38,6 +38,58 @@
 				</div>
 				<div class="widget-container fluid-height userWallets">
 					<div class="heading">
+						<i class="icon-list-alt"></i>Biography
+					</div>
+					<div class="widget-content padded">
+						<?php if($userInfo['profile_bio']){ ?>
+							<div class="userBio">
+								<?php echo $userInfo['profile_bio'];?>
+							</div>			
+						<?php } else{?>
+							<div class="errorMessage">
+	                			<?php echo "No Biography." ;?>
+	                		</div>
+	                	<?php } ?>
+			        </div>
+				</div>
+				<div class="widget-container fluid-height">
+					<div class="heading">
+						<i class="icon-list-alt"></i>Social Networks
+					</div>
+					<div class="widget-content padded">
+						<?php if($userInfo['profile_facebook'] && $userInfo['profile_twitter'] && $userInfo['profile_linkedin'] && $userInfo['profile_skype']) {
+							if($userInfo['profile_facebook']) {?>
+								<div class="userSocialNetworks marginTopten">
+									<i class="icon-facebook-sign"></i>&nbsp;&nbsp;<?php echo $userInfo['profile_facebook'];?>
+								</div>			
+							<?php } ?>
+							<?php if($userInfo['profile_twitter']) {?>
+								<div class="userSocialNetworks">
+									<i class="icon-twitter-sign"></i>&nbsp;&nbsp;<?php echo $userInfo['profile_twitter'];?>
+								</div>			
+							<?php } ?>
+							<?php if($userInfo['profile_linkedin']) {?>
+								<div class="userSocialNetworks">
+									<i class="icon-linkedin-sign"></i>&nbsp;&nbsp;<?php echo $userInfo['profile_linkedin'];?>
+								</div>			
+							<?php } ?>
+							<?php if($userInfo['profile_skype']) {?>
+								<div class="userSocialNetworks">
+									<i class="icon-skype"></i>&nbsp;&nbsp;<?php echo $userInfo['profile_skype'];?>
+								</div>			
+							<?php } 
+						}else{?>
+							<div class="errorMessage">
+	                			<?php echo "No Social networks." ;?>
+	                		</div>
+	                	<?php } ?>
+			        </div>
+				</div>
+
+			</div>
+			<div class="col-md-6">
+				<div class="widget-container fluid-height">
+					<div class="heading">
 						<i class="icon-money"></i>Wallets
 					</div>
 					<div class="widget-content padded">
