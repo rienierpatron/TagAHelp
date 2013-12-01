@@ -83,6 +83,13 @@ h2{
 	-moz-border-radius: 13px;
 	border-radius: 13px;
 }
+#profileIndex .userBio{
+	margin-top: -10px;
+	text-indent: 10px;
+}
+#profileIndex .marginTopten{
+	margin-top:-15px;
+}
 /*community dashboard*/
 #communityDashboard .alignCenter{
 	text-align: center;
